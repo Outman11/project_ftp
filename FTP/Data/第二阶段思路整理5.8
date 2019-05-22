@@ -1,0 +1,81 @@
+数据结构
+逻辑结构－－线性结构／树形结构／图形结构／其他结构
+存储结构－－顺序存储－链表存储－－索引存储－－散列存储
+线性表－－顺序存储／链式存储　　一个重点代码
+
+栈－－顺序存储／链表存储－－先入后出　　两个重点代码
+队列－－顺序存储／链表存储－－先入先出　两个重点代码
+
+树
+二叉树
+先序－－根左右
+中序－－左根右
+后序－－左右根
+层次
+
+二叉树的先中后序遍历－－递归　一个重点代码
+层次遍历－－队列
+
+时间复杂度
+
+排序
+冒泡排序－－选择排序－－插入排序－－快速排序　四个重点代码
+
+二分法查询　一个重点代码
+
+IO网络编程
+文件读写
+字符串－－字节串　encode()
+字节串－－字符串　decode()
+
+刷新缓冲区　flush()
+文件偏移量　tell() seek()
+文件描述符　fileno()
+
+OSI七层模型－－TCP/IP模型
+应用层，表示层，会话层，传输层，网络层，链路层，物理层
+应用层，传输层，网际层，网络接口层
+
+面向连接的可靠传输（TCP传输）
+连接－－三次握手
+断开－－四次挥手
+流式套接字　　两个重点代码
+服务端：socket--bind--listen--accept--recv/send--close
+		  connfd,addr = sockfd.accept()
+		  connfd.recv()
+客户端：socket--connect--send/recv--close
+		socket.connect(("0.0.0.0",8000))
+TCP粘包
+管道破裂异常
+
+面向无连接的不可靠传输（UDP传输）
+数据报套接字　　两个重点代码
+服务端：socket--bind--recvfrom/sendto--close
+		data,addr = sockfd.recvfrom()
+		sockfd.sendto(data,addr)
+
+客户端：socket--bind--recvfrom/sendto--close
+		sockfd.sendto(data,ADDR)
+UDP广播传输
+UDP套接字－－两个重点代码
+
+HTTP传输
+HTTP请求
+请求行－－请求头－－空行－－请求体
+
+HTTP响应
+响应行－－响应头－－空行－－响应体　　两个重点代码
+
+struct模块
+
+
+
+
+
+
+
+
+
+
+
+

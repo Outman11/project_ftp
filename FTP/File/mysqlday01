@@ -1,0 +1,109 @@
+MySQL day01 笔记　
+
+mysql概述
+    什么是数据库：存储数据的仓库
+    使用公司：金融，游戏，购物，论坛
+    提供数据库的服务软件：mysql,orcle,mongodb,mariadb
+    生产环境中如何选择：
+        是否开源：　开源：mysql,mariadb,mongodb,resis
+                  商业：oracle,sql_server,db2
+        是否跨平台：　不跨平台：sql_server
+                    跨平台：．．．（基本都是）
+        公司类型
+
+mysql特点
+    关系型数据库：
+        数据是以行和列（表格）形式存储
+        一行：一条记录；一列：一个字段
+        表和表之间逻辑关联叫关系
+
+    跨品台数据库
+    支持多种编程语言
+
+    数据库，数据库软件，数据仓库概念：
+        数据库：逻辑概念，存放数据仓库，侧重存储
+        数据库软件：真实软件，实现数据库的逻辑功能
+        数据仓库：　数据量比数据库庞大的多，侧重于数据分析和数据挖掘
+
+
+mysql安装：
+    １，ubuntu:服务端：sudo apt-get install mysql-server
+              客户端：sudo apt-get install mysql-client
+    2,windows:
+        下载安装包：mysql-installerxxx5.7.xxx.msi
+
+
+启动和连接musql服务：
+        启动服务器端:sudo /etc/init.d/mysql status|start|stop|
+                    service mysql starus|start|stop|restart
+        启动客户端：mysql -hIP地址 -u用户名 -p密码
+                  mysql -ulocalhost -uroot -p123456
+
+
+sql命令使用规则：
+        １，每条命令必须以；（分号）结尾
+        ２，sql命令不区分大小写
+        ３，使用＼ｃ终止当前命令执行
+
+
+库的管理
+        查看已有库：show databases;
+        创建数据库：create database 库名；
+                  create database 库名 character set utf8;(指定字符集)
+        切换库：use 库名；
+        查看当前所在库：select database();
+        删除库：drop database 库名；
+        查看创建库的语句：show create database 库名；
+
+
+表的管理
+    创建表：create table 表名（
+            字段名　数据类型，
+            字段名　数据类型，
+            字段名　数据类型）charset=utf8(指定字符集)；
+    查看创建表的语句（字符集，存储引擎）
+        show create table 表名；
+    查看当前库的所有表：show tables;
+    查看表结构：desc 表名；
+    删除表：drop table 表名；
+
+
+注： mysql基于磁盘存储，所有数据以文件形式存放在数据库目录下/var/lib/mysql
+
+
+表记录的管理
+    增加（insert）:
+        insert into 表名　values(值１),(值２)；
+        insert into 表名(字段１，字段２)　values(值１),(值２)；
+    查（select）:
+        select * from 表名　where 条件；
+        select 字段１，字段２ from 表名 where 条件；
+
+
+更改默认字符集（改配置文件）
+    方法：通过更改配置文件实现
+    步骤：sudo -i
+         cd /etc/mysql/mysql1.conf.d/
+         cp mysqld.cnf mysqld.cnf.bak(备份)
+         subl mysql.cnf
+         [mysql]下面添加：
+         character_set_server = utf8
+         /etc/init.d/mysql restart
+
+数据类型
+    数值类型：
+      　整型：int 大整型（４个字节）：最大取值２**３２－１
+            tinyint 微小整型（１个字节）：有符号（默认）：－１２８～１２７
+                                       无符号：unsigned:0～２５５
+            smallint 小整形（２个字节）
+            bigint 超大整形（８个字节）
+
+      　浮点型：float(m,n) m代表总数为，n代表小数位位数,最多显示７个有效位
+             　  float(5,2)　取值范围：-999.99~999.99
+               decimal(m,n):最多小时２８个有效位
+
+    字符类型：
+        定长：char(宽度) 取值范围：1~255　浪费存储空间，性能高
+        变长：varchar(宽度)　取值范围：1~65535　　节省储存及空间，性能低
+        text / longtext / blob / longblob(4G)
+
